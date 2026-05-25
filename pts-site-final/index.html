@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<meta name="description" content="Precision Tech Solutions — Professional GPS, dashcam, CarPlay, lighting and sound system installation. On-site, expert installation across the Netherlands and Curaçao.">
+<title>Precision Tech Solutions — Professional Vehicle Installation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+/* ── HOME-SPECIFIC ── */
+#hero{min-height:100svh;display:flex;align-items:center;padding:110px 5vw 80px;position:relative;overflow:hidden;background:var(--navy)}
+.hero-bg{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 55% 45% at 65% 45%,rgba(0,183,255,.07) 0%,transparent 65%),radial-gradient(ellipse 35% 40% at 15% 75%,rgba(0,183,255,.035) 0%,transparent 55%)}
+.hero-grid-lines{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(0,183,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,183,255,.025) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 75% 65% at 60% 42%,black 10%,transparent 75%)}
+.hero-inner{max-width:var(--container);margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 420px;gap:4.5rem;align-items:center;position:relative}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:9px;background:rgba(0,183,255,.1);border:1px solid var(--border-cyan);border-radius:100px;padding:6px 16px;font-size:.7rem;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--cyan);margin-bottom:1.4rem;opacity:0;animation:fu .7s .1s forwards}
+.hero-eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--cyan);animation:blink 2s infinite}
+#hero h1{margin-bottom:1.4rem;opacity:0;animation:fu .75s .25s forwards;color:#fff}
+#hero h1 .h1-grey{color:rgba(255,255,255,.55)}
+#hero h1 .h1-cyan{color:var(--cyan)}
+.hero-sub{font-size:clamp(.95rem,2vw,1.05rem);color:rgba(255,255,255,.62);max-width:480px;line-height:1.75;font-weight:300;margin-bottom:2.2rem;opacity:0;animation:fu .75s .4s forwards}
+.hero-ctas{display:flex;gap:.85rem;flex-wrap:wrap;opacity:0;animation:fu .75s .55s forwards}
+.hero-trust{display:flex;gap:1.6rem;margin-top:2.8rem;opacity:0;animation:fu .75s .7s forwards;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:8px;font-size:.8rem;color:rgba(255,255,255,.58)}
+.trust-item svg{width:14px;height:14px;stroke:var(--cyan);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+
+/* Hero panel — live "install status" card */
+.hero-panel{opacity:0;animation:fu .75s .85s forwards}
+.service-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:18px;overflow:hidden;backdrop-filter:blur(10px)}
+.sc-header{background:rgba(0,183,255,.07);border-bottom:1px solid rgba(255,255,255,.08);padding:16px 20px;display:flex;align-items:center;gap:13px}
+.sc-icon{width:38px;height:38px;background:var(--cyan);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sc-icon svg{width:19px;height:19px}
+.sc-head-text h4{font-size:.92rem;font-weight:700;margin-bottom:3px;color:#fff}
+.sc-head-text p{font-size:.74rem;color:rgba(255,255,255,.55)}
+.sc-live{margin-left:auto;display:flex;align-items:center;gap:7px;font-size:.68rem;color:var(--green);font-weight:600;letter-spacing:.05em;text-transform:uppercase}
+.sc-live-dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:blink 2s infinite}
+.sc-body{padding:18px 20px}
+.sc-step{display:flex;align-items:flex-start;gap:12px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.sc-step:last-child{border-bottom:none;padding-bottom:0}
+.sc-step.done .sc-num{background:rgba(46,204,113,.15);border-color:rgba(46,204,113,.35);color:var(--green)}
+.sc-num{width:24px;height:24px;border-radius:7px;background:rgba(0,183,255,.12);border:1px solid var(--border-cyan);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.7rem;font-weight:700;color:var(--cyan)}
+.sc-num svg{width:11px;height:11px;stroke:currentColor;fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.sc-step-text h5{font-size:.82rem;font-weight:500;margin-bottom:3px;color:#fff}
+.sc-step-text p{font-size:.72rem;color:rgba(255,255,255,.5);line-height:1.55}
+.sc-footer{padding:13px 20px;background:rgba(0,183,255,.05);border-top:1px solid rgba(255,255,255,.07);display:flex;align-items:center;justify-content:space-between}
+.sf-label{font-size:.7rem;color:rgba(255,255,255,.5)}
+.sf-val{font-size:.88rem;font-weight:700;color:var(--green)}
+
+/* ── 3 CORE VALUES ── */
+#values{background:var(--bg2);padding:80px 5vw}
+.values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:3rem}
+.value-card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:32px 28px;transition:all .3s}
+.value-card:hover{border-color:var(--border-cyan);transform:translateY(-3px);box-shadow:0 10px 30px rgba(11,31,58,.08)}
+.value-num{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);font-weight:600;margin-bottom:1rem}
+.value-card h3{margin-bottom:.8rem;color:var(--text)}
+.value-card p{font-size:.9rem;color:var(--text-3);line-height:1.7}
+
+/* ── SERVICES OVERVIEW ── */
+#services-overview{padding:90px 5vw;background:#fff}
+.so-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:3rem}
+.so-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:28px 26px;transition:all .3s;display:flex;flex-direction:column;gap:.8rem;position:relative;overflow:hidden}
+.so-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,183,255,.04) 0%,transparent 50%);opacity:0;transition:opacity .3s;pointer-events:none}
+.so-card:hover{border-color:var(--border-cyan);transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,183,255,.1)}
+.so-card:hover::before{opacity:1}
+.so-icon{width:44px;height:44px;background:var(--cyan-10);border:1px solid var(--border-cyan);border-radius:11px;display:flex;align-items:center;justify-content:center;margin-bottom:.4rem}
+.so-icon svg{width:20px;height:20px;stroke:var(--cyan);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.so-card h3{font-size:1.05rem;color:var(--text)}
+.so-card p{font-size:.86rem;color:var(--text-3);line-height:1.65;flex:1}
+.so-card .so-link{font-size:.82rem;color:var(--cyan);font-weight:600;display:inline-flex;align-items:center;gap:6px;margin-top:.5rem}
+.so-card .so-link svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;transition:transform .25s}
+.so-card:hover .so-link svg{transform:translateX(3px)}
+
+/* ── WHO WE ARE ── */
+#who{padding:100px 5vw;background:var(--lb)}
+.who-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.who-locations{display:flex;flex-direction:column;gap:1rem;margin-top:2rem}
+.location-card{background:#fff;border:1px solid var(--border);border-radius:13px;padding:20px 22px;display:flex;align-items:center;gap:18px;transition:all .3s}
+.location-card:hover{border-color:var(--border-cyan);transform:translateX(4px)}
+.loc-flag{width:48px;height:48px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0;background:var(--bg2);border:1px solid var(--border)}
+.loc-info h4{font-size:.95rem;font-weight:700;color:var(--text);margin-bottom:3px}
+.loc-info p{font-size:.78rem;color:var(--text-3);line-height:1.5}
+.loc-status{margin-left:auto;display:flex;align-items:center;gap:7px;font-size:.7rem;color:var(--green);font-weight:600}
+.loc-status .status-dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:blink 2s infinite}
+.loc-status.future{color:var(--amber)}
+.loc-status.future .status-dot{background:var(--amber)}
+
+.who-visual{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+.stat-box{background:#fff;border:1px solid var(--border);border-radius:13px;padding:24px 22px;transition:border-color .3s}
+.stat-box:hover{border-color:var(--border-cyan)}
+.sb-num{font-size:2rem;font-weight:800;color:var(--text);letter-spacing:-.03em;line-height:1;margin-bottom:6px}
+.sb-num span{color:var(--cyan)}
+.sb-label{font-size:.78rem;color:var(--text-3)}
+.stat-box.tall{grid-column:span 2;background:linear-gradient(135deg,var(--navy) 0%,#102a4d 100%);color:#fff;border:none;padding:28px 26px}
+.stat-box.tall .sb-num{color:#fff;font-size:1.5rem}
+.stat-box.tall .sb-label{color:rgba(255,255,255,.7);margin-top:.4rem;font-size:.84rem;line-height:1.55}
+
+/* ── PRICING TEASER ── */
+#pricing-teaser{padding:90px 5vw;background:var(--navy);color:#fff;position:relative;overflow:hidden}
+.pt-bg{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 40% 50% at 80% 50%,rgba(0,183,255,.08),transparent 60%)}
+.pt-inner{max-width:var(--container);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;position:relative}
+#pricing-teaser h2{color:#fff}
+#pricing-teaser .lead{color:rgba(255,255,255,.65);max-width:480px}
+.pt-cards{display:flex;flex-direction:column;gap:.8rem}
+.pt-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:13px;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;gap:1rem;transition:all .25s}
+.pt-card:hover{border-color:rgba(0,183,255,.3);background:rgba(0,183,255,.04)}
+.pt-card.featured{border-color:var(--border-cyan);background:rgba(0,183,255,.06)}
+.pt-card h4{font-size:.95rem;font-weight:700;color:#fff;margin-bottom:3px}
+.pt-card p{font-size:.76rem;color:rgba(255,255,255,.55)}
+.pt-price{font-size:1rem;font-weight:700;color:var(--cyan);white-space:nowrap;text-align:right}
+.pt-price small{color:rgba(255,255,255,.5);font-weight:400;font-size:.7rem;display:block;margin-top:2px}
+
+/* ── FINAL CTA ── */
+#final-cta{padding:100px 5vw;background:#fff;text-align:center}
+#final-cta h2{margin-bottom:1rem}
+.fc-buttons{display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap;margin-top:2rem}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  .hero-inner{grid-template-columns:1fr;gap:0}
+  .hero-panel{display:none}
+  .values-grid{grid-template-columns:1fr;gap:.9rem}
+  .so-grid{grid-template-columns:1fr 1fr}
+  .who-grid{grid-template-columns:1fr;gap:3rem}
+  .pt-inner{grid-template-columns:1fr;gap:3rem}
+}
+@media(max-width:768px){
+  #hero{padding:88px 4vw 60px;min-height:auto}
+  .hero-trust{gap:1rem;margin-top:1.8rem}
+  .so-grid{grid-template-columns:1fr;gap:.9rem}
+  .who-visual{grid-template-columns:1fr 1fr}
+  .stat-box.tall{grid-column:span 2}
+  #values,#services-overview,#who,#pricing-teaser,#final-cta{padding:64px 4vw}
+}
+</style>
+</head>
+<body>
+
+<div class="nav-drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
+
+<nav class="nav-drawer" id="navDrawer" aria-label="Mobile navigation" aria-hidden="true">
+  <div class="nd-label">Navigation</div>
+  <a href="index.html"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>Home</a>
+  <a href="services.html"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>Services</a>
+  <a href="gps-tracking.html"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>GPS Tracking</a>
+  <a href="pricing.html"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9 9a3 3 0 016 0M9 14h6M9 18h6"/></svg>Pricing</a>
+  <a href="about.html"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>About Us</a>
+  <a href="contact.html"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>Contact</a>
+  <a href="contact.html" class="nd-cta" onclick="closeDrawer()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+    Request Quote
+  </a>
+</nav>
+
+<nav class="topnav" aria-label="Main navigation">
+  <a href="index.html" class="logo">
+    <div class="logo-mark">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#0B1F3A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    </div>
+    <span class="logo-text">Precision Tech Solutions</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html" class="active">Home</a>
+    <a href="services.html">Services</a>
+    <a href="gps-tracking.html">GPS Tracking</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="nav-right">
+    <a href="contact.html" class="nav-book">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:13px;height:13px"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Request Quote
+    </a>
+    <button class="burger" id="burgerBtn" onclick="toggleDrawer()" aria-label="Open menu" aria-expanded="false" aria-controls="navDrawer">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-lines"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">Installation Specialist · NL & Curaçao</div>
+      <h1>
+        <span class="h1-grey">Vehicle technology,</span><br>
+        <span class="h1-cyan">precisely installed.</span>
+      </h1>
+      <p class="hero-sub">We professionally install GPS trackers, dashcams, CarPlay, sound systems and lighting in cars, trucks, boats, cranes and heavy machinery — on-site, on schedule, ready to use the same day.</p>
+      <div class="hero-ctas">
+        <a href="contact.html" class="btn-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Request a Quote
+        </a>
+        <a href="pricing.html" class="btn-outline">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9 9a3 3 0 016 0M9 14h6M9 18h6"/></svg>
+          See Pricing
+        </a>
+      </div>
+      <div class="hero-trust">
+        <div class="trust-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Same-day completion</div>
+        <div class="trust-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>All vehicle types</div>
+        <div class="trust-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>2-year warranty</div>
+      </div>
+    </div>
+    <div class="hero-panel">
+      <div class="service-card">
+        <div class="sc-header">
+          <div class="sc-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#0B1F3A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>
+          </div>
+          <div class="sc-head-text">
+            <h4>Live install — Transport Co.</h4>
+            <p>8 vehicles · Willemstad depot</p>
+          </div>
+          <div class="sc-live"><span class="sc-live-dot"></span>Live</div>
+        </div>
+        <div class="sc-body">
+          <div class="sc-step done">
+            <div class="sc-num"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="sc-step-text">
+              <h5>Booking confirmed</h5>
+              <p>Provider coordinated · hardware ready</p>
+            </div>
+          </div>
+          <div class="sc-step done">
+            <div class="sc-num"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="sc-step-text">
+              <h5>On-site arrival</h5>
+              <p>Technician on location · 09:00</p>
+            </div>
+          </div>
+          <div class="sc-step">
+            <div class="sc-num">3</div>
+            <div class="sc-step-text">
+              <h5>Installation in progress</h5>
+              <p>6 of 8 vehicles complete · hidden wiring</p>
+            </div>
+          </div>
+          <div class="sc-step">
+            <div class="sc-num">4</div>
+            <div class="sc-step-text">
+              <h5>Handover &amp; tested</h5>
+              <p>Each system validated before sign-off</p>
+            </div>
+          </div>
+        </div>
+        <div class="sc-footer">
+          <div class="sf-label">Status</div>
+          <div class="sf-val">On schedule · same-day</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="values">
+  <div class="inner">
+    <div style="max-width:620px">
+      <div class="tag fade-up">What sets us apart</div>
+      <h2 class="fade-up d1">Three things we&#39;re uncompromising about.</h2>
+    </div>
+    <div class="values-grid">
+      <div class="value-card fade-up d1">
+        <div class="value-num">01 · Precision</div>
+        <h3>Clean, hidden, tested.</h3>
+        <p>Every cable routed out of sight. Every mount level. Every system validated before the keys go back to you. No half-work, ever.</p>
+      </div>
+      <div class="value-card fade-up d2">
+        <div class="value-num">02 · Speed</div>
+        <h3>Same-day, every time.</h3>
+        <p>Most installs finish the day they start. Fleet bookings are scheduled in tight batches so your vehicles spend hours, not days, off the road.</p>
+      </div>
+      <div class="value-card fade-up d3">
+        <div class="value-num">03 · Freedom</div>
+        <h3>Your GPS provider, our install.</h3>
+        <p>We partner with multiple GPS providers — and we install whichever system you already use, or recommend the one that fits your fleet best. No lock-in.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services-overview">
+  <div class="inner">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:2rem">
+      <div style="max-width:580px">
+        <div class="tag fade-up">What we install</div>
+        <h2 class="fade-up d1">From GPS to dashcams<br>and everything in between.</h2>
+      </div>
+      <a href="services.html" class="fade-up d2" style="background:transparent;color:var(--cyan);border:1px solid var(--border-cyan);padding:11px 20px;border-radius:9px;font-weight:600;font-size:.86rem;display:inline-flex;align-items:center;gap:7px">
+        All Services
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+    <div class="so-grid">
+      <div class="so-card fade-up d1">
+        <div class="so-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg></div>
+        <h3>GPS Track &amp; Trace</h3>
+        <p>OBD plug-in or hardwired tracker install for live location, geofencing, route history and immobilizer control.</p>
+        <a href="gps-tracking.html" class="so-link">Explore GPS solutions <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </div>
+      <div class="so-card fade-up d2">
+        <div class="so-icon"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><circle cx="12" cy="14" r="3.5"/></svg></div>
+        <h3>Dashcam Installation</h3>
+        <p>Front, rear and cabin dashcams. Hardwired for permanent power, neatly routed, completely hidden.</p>
+        <a href="services.html#dashcam" class="so-link">View dashcam install <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </div>
+      <div class="so-card fade-up d3">
+        <div class="so-icon"><svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="13" rx="2"/><path d="M8 19v2M16 19v2"/></svg></div>
+        <h3>CarPlay &amp; Android Auto</h3>
+        <p>Modern head unit upgrades with wireless CarPlay and Android Auto — professionally wired, perfectly integrated.</p>
+        <a href="services.html#carplay" class="so-link">See infotainment <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </div>
+      <div class="so-card fade-up d1">
+        <div class="so-icon"><svg viewBox="0 0 24 24"><path d="M12 2L4 7v6c0 5 4 8 8 9 4-1 8-4 8-9V7l-8-5z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3>CAN-bus Connection</h3>
+        <p>Direct vehicle CAN-bus wiring for speed, RPM, fuel and fault codes when your fleet system needs it.</p>
+        <a href="gps-tracking.html#canbus" class="so-link">CAN-bus details <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </div>
+      <div class="so-card fade-up d2">
+        <div class="so-icon"><svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/><path d="M6 8v8M18 8v8M8 6h8M8 18h8"/></svg></div>
+        <h3>LED &amp; Lighting Upgrades</h3>
+        <p>Auxiliary, work and accent lighting, properly fused and wired to the right relay — no flickering, no errors.</p>
+        <a href="services.html#lighting" class="so-link">Lighting options <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </div>
+      <div class="so-card fade-up d3">
+        <div class="so-icon"><svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
+        <h3>Sound Systems</h3>
+        <p>Head units, amplifiers, subwoofers and speaker upgrades — clean install, no rattles, no exposed wires.</p>
+        <a href="services.html#sound" class="so-link">Sound install <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="who">
+  <div class="inner">
+    <div class="who-grid">
+      <div>
+        <div class="tag fade-up">Who we are</div>
+        <h2 class="fade-up d1">A trusted installer in two countries — building toward many more.</h2>
+        <p class="lead fade-up d2" style="margin-top:1rem">Precision Tech Solutions operates from the Netherlands and Curaçao, serving lease companies, transport operators, fleet owners and private clients across both regions. Our mission is to grow into the installation partner of choice for vehicle technology worldwide — one clean install at a time.</p>
+        <div class="who-locations">
+          <div class="location-card fade-up d2">
+            <div class="loc-flag">🇳🇱</div>
+            <div class="loc-info">
+              <h4>Netherlands</h4>
+              <p>Mobile installation across the country</p>
+            </div>
+            <div class="loc-status"><span class="status-dot"></span>Active</div>
+          </div>
+          <div class="location-card fade-up d3">
+            <div class="loc-flag">🇨🇼</div>
+            <div class="loc-info">
+              <h4>Curaçao</h4>
+              <p>On-site service across the island</p>
+            </div>
+            <div class="loc-status"><span class="status-dot"></span>Active</div>
+          </div>
+          <div class="location-card fade-up d4">
+            <div class="loc-flag">🌍</div>
+            <div class="loc-info">
+              <h4>Going global</h4>
+              <p>Expanding our footprint, region by region</p>
+            </div>
+            <div class="loc-status future"><span class="status-dot"></span>Coming</div>
+          </div>
+        </div>
+      </div>
+      <div class="who-visual fade-up d1">
+        <div class="stat-box"><div class="sb-num">500<span>+</span></div><div class="sb-label">Vehicles installed</div></div>
+        <div class="stat-box"><div class="sb-num">&lt;45<span>m</span></div><div class="sb-label">Avg. install time</div></div>
+        <div class="stat-box"><div class="sb-num">8<span>+</span></div><div class="sb-label">Years experience</div></div>
+        <div class="stat-box"><div class="sb-num">2<span>yr</span></div><div class="sb-label">Warranty included</div></div>
+        <div class="stat-box tall">
+          <div class="sb-num">Partnered with multiple GPS providers</div>
+          <div class="sb-label">We install whichever tracking system fits your operation — no mandatory provider, no lock-in.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing-teaser">
+  <div class="pt-bg"></div>
+  <div class="pt-inner">
+    <div>
+      <div class="tag fade-up">Pricing</div>
+      <h2 class="fade-up d1">Clear pricing.<br>No surprises.</h2>
+      <p class="lead fade-up d2" style="margin-top:1rem">Three transparent tiers for tracking subscriptions, plus straightforward install rates. All prices in XCG, OB included.</p>
+      <a href="pricing.html" class="btn-primary fade-up d3" style="margin-top:1.6rem">
+        View full pricing
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+    <div class="pt-cards fade-up d2">
+      <div class="pt-card">
+        <div>
+          <h4>Basic Tracking</h4>
+          <p>Live tracking · Route history · Mobile app</p>
+        </div>
+        <div class="pt-price">ƒ 30<small>per month</small></div>
+      </div>
+      <div class="pt-card featured">
+        <div>
+          <h4>Professional</h4>
+          <p>+ G-force monitoring · Geofencing · Reports</p>
+        </div>
+        <div class="pt-price">ƒ 60<small>per month</small></div>
+      </div>
+      <div class="pt-card">
+        <div>
+          <h4>Fleet (11+ vehicles)</h4>
+          <p>Volume pricing · CAN-bus ready</p>
+        </div>
+        <div class="pt-price">ƒ 22<small>per vehicle/month</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="final-cta">
+  <div class="inner sec-narrow">
+    <div class="tag center fade-up">Ready when you are</div>
+    <h2 class="fade-up d1">Let&#39;s get your vehicles installed.</h2>
+    <p class="lead center fade-up d2" style="margin-top:1rem">Tell us how many vehicles, what type, and your preferred date. We&#39;ll confirm within 24 hours.</p>
+    <div class="fc-buttons fade-up d3">
+      <a href="contact.html" class="btn-primary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Request a Quote
+      </a>
+      <a href="https://wa.me/59996655017" class="btn-wa">
+        <svg viewBox="0 0 24 24" fill="#2ECC71"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.978-1.304A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.522 2 11.999 2z"/></svg>
+        WhatsApp Us
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">
+          <div class="logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#0B1F3A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <span class="logo-text">Precision Tech Solutions</span>
+        </a>
+        <p>Your professional installation partner for GPS, dashcams, infotainment, lighting and sound systems.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h5>Services</h5>
+          <a href="gps-tracking.html">GPS Tracking</a>
+          <a href="services.html#dashcam">Dashcam Installation</a>
+          <a href="services.html#carplay">CarPlay &amp; Android Auto</a>
+          <a href="services.html#sound">Sound Systems</a>
+          <a href="services.html#lighting">Lighting &amp; LED</a>
+          <a href="gps-tracking.html#canbus">CAN-bus Connection</a>
+        </div>
+        <div class="footer-col">
+          <h5>Company</h5>
+          <a href="about.html">About Us</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="contact.html">Contact</a>
+          <a href="contact.html">Request Quote</a>
+        </div>
+        <div class="footer-col">
+          <h5>Reach us</h5>
+          <a href="https://wa.me/59996655017">WhatsApp</a>
+          <a href="mailto:info@precisiontsolutions.com">Email</a>
+          <a href="about.html">Locations</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Precision Tech Solutions. All rights reserved.</p>
+      <div class="status-badge"><span class="status-dot"></span>Available for appointments</div>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

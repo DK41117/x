@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<meta name="description" content="Transparent pricing for GPS tracking, installation, dashcams and accessories. All prices in XCG, OB included.">
+<title>Pricing — Precision Tech Solutions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+/* ── PRICING PAGE ── */
+.currency-note{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:100px;padding:6px 14px;font-size:.72rem;color:rgba(255,255,255,.7);margin-top:1.6rem}
+.currency-note svg{width:13px;height:13px;stroke:var(--cyan);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* PLANS */
+#plans{padding:90px 5vw;background:#fff}
+.plans-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:3rem}
+.plan-card{background:#fff;border:1px solid var(--border);border-radius:18px;padding:36px 30px;position:relative;display:flex;flex-direction:column;transition:all .3s}
+.plan-card:hover{border-color:var(--border-cyan);transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,183,255,.1)}
+.plan-card.featured{background:linear-gradient(170deg,var(--navy) 0%,#0e2547 100%);color:#fff;border:none;transform:translateY(-8px);box-shadow:0 18px 50px rgba(11,31,58,.25)}
+.plan-card.featured:hover{transform:translateY(-12px)}
+.plan-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--cyan);color:var(--navy);font-size:.66rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:5px 14px;border-radius:100px;box-shadow:0 4px 14px rgba(0,183,255,.4)}
+.plan-name{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);font-weight:600;margin-bottom:.8rem}
+.plan-card.featured .plan-name{color:var(--cyan)}
+.plan-title{font-size:1.4rem;font-weight:800;margin-bottom:.5rem;letter-spacing:-.02em;color:var(--text)}
+.plan-card.featured .plan-title{color:#fff}
+.plan-desc{font-size:.85rem;color:var(--text-3);margin-bottom:1.6rem;line-height:1.6}
+.plan-card.featured .plan-desc{color:rgba(255,255,255,.65)}
+.plan-price{display:flex;align-items:baseline;gap:6px;margin-bottom:.4rem}
+.plan-price .currency{font-size:1.2rem;font-weight:700;color:var(--text-3)}
+.plan-card.featured .plan-price .currency{color:rgba(255,255,255,.7)}
+.plan-price .amount{font-size:3rem;font-weight:800;color:var(--text);letter-spacing:-.04em;line-height:1}
+.plan-card.featured .plan-price .amount{color:#fff}
+.plan-price .period{font-size:.85rem;color:var(--text-3);font-weight:400}
+.plan-card.featured .plan-price .period{color:rgba(255,255,255,.6)}
+.plan-sub{font-size:.75rem;color:var(--text-3);margin-bottom:1.8rem;padding-bottom:1.8rem;border-bottom:1px solid var(--border)}
+.plan-card.featured .plan-sub{color:rgba(255,255,255,.55);border-color:rgba(255,255,255,.1)}
+.plan-features{list-style:none;display:flex;flex-direction:column;gap:.7rem;flex:1;margin-bottom:1.8rem}
+.plan-features li{display:flex;align-items:flex-start;gap:10px;font-size:.86rem;color:var(--text-2);line-height:1.5}
+.plan-card.featured .plan-features li{color:rgba(255,255,255,.82)}
+.plan-features li svg{width:15px;height:15px;stroke:var(--green);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;margin-top:2px}
+.plan-features li.muted{color:var(--text-3)}
+.plan-features li.muted svg{stroke:var(--text-3);opacity:.5}
+.plan-card.featured .plan-features li.muted{color:rgba(255,255,255,.4)}
+.plan-cta{background:transparent;border:1px solid var(--border-cyan);color:var(--cyan);padding:13px 20px;border-radius:9px;font-family:var(--ff);font-weight:600;font-size:.88rem;cursor:pointer;transition:all .22s;display:inline-flex;align-items:center;justify-content:center;gap:7px;text-decoration:none}
+.plan-cta:hover{background:var(--cyan);color:var(--navy)}
+.plan-card.featured .plan-cta{background:var(--cyan);color:var(--navy);border-color:var(--cyan)}
+.plan-card.featured .plan-cta:hover{background:var(--cyan-bright)}
+
+/* INSTALLATION RATES */
+#install-rates{padding:90px 5vw;background:var(--bg2)}
+.rate-table-wrap{margin-top:2.8rem;background:#fff;border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:0 2px 18px rgba(11,31,58,.05)}
+.rate-table{width:100%;border-collapse:collapse}
+.rate-table thead{background:var(--navy);color:#fff}
+.rate-table th{padding:18px 20px;text-align:left;font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.7)}
+.rate-table th:not(:first-child){text-align:center}
+.rate-table td{padding:18px 20px;font-size:.9rem;color:var(--text-2);border-bottom:1px solid var(--border)}
+.rate-table tr:last-child td{border-bottom:none}
+.rate-table td:not(:first-child){text-align:center;font-weight:600;color:var(--text)}
+.rate-table tr:hover{background:var(--bg2)}
+.rate-table .price{color:var(--cyan);font-weight:700;font-size:.95rem;white-space:nowrap}
+.rate-table .urgent{color:var(--amber)}
+.rate-table .price small{display:block;font-size:.7rem;color:var(--text-3);font-weight:400;margin-top:2px}
+.rate-name{display:flex;flex-direction:column;gap:3px}
+.rate-name strong{font-weight:600;color:var(--text)}
+.rate-name small{color:var(--text-3);font-size:.78rem;font-weight:400}
+
+/* HARDWARE GRID */
+#hardware{padding:90px 5vw;background:#fff}
+.hw-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem;margin-top:2.8rem}
+.hw-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:28px 28px;transition:all .3s;display:flex;flex-direction:column;gap:1rem}
+.hw-card:hover{border-color:var(--border-cyan);transform:translateY(-3px);box-shadow:0 12px 30px rgba(11,31,58,.07)}
+.hw-card.featured{background:linear-gradient(135deg,#0e2547 0%,#102a4d 100%);color:#fff;border:none}
+.hw-card.featured h3,.hw-card.featured .hw-spec{color:#fff}
+.hw-card.featured .hw-spec-label{color:rgba(255,255,255,.55)}
+.hw-card.featured .hw-divider{border-color:rgba(255,255,255,.1)}
+.hw-head{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem}
+.hw-head h3{font-size:1.05rem;color:var(--text)}
+.hw-card-tag{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);font-weight:600;background:var(--cyan-10);border:1px solid var(--border-cyan);padding:3px 10px;border-radius:100px;white-space:nowrap}
+.hw-card.featured .hw-card-tag{background:rgba(0,183,255,.18);color:var(--cyan)}
+.hw-desc{font-size:.84rem;color:var(--text-3);line-height:1.6}
+.hw-card.featured .hw-desc{color:rgba(255,255,255,.65)}
+.hw-divider{border:none;border-top:1px solid var(--border);margin:.4rem 0}
+.hw-specs{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+.hw-spec-block{display:flex;flex-direction:column;gap:3px}
+.hw-spec-label{font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);font-weight:500}
+.hw-spec{font-size:1.05rem;font-weight:700;color:var(--text);letter-spacing:-.01em}
+.hw-spec .currency{font-size:.85rem;color:var(--text-3);font-weight:400;margin-right:3px}
+.hw-spec small{display:block;font-size:.7rem;color:var(--text-3);font-weight:400;margin-top:2px}
+.hw-card.featured .hw-spec small{color:rgba(255,255,255,.5)}
+
+/* RELAY 4G — special card */
+.relay-card{grid-column:span 2;background:linear-gradient(135deg,var(--navy) 0%,#0e2547 100%);color:#fff;border:none;padding:36px;border-radius:18px;display:grid;grid-template-columns:1fr 1.4fr;gap:2.5rem;align-items:center}
+.relay-info h3{font-size:1.5rem;color:#fff;margin-bottom:.5rem;letter-spacing:-.02em}
+.relay-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(0,183,255,.15);border:1px solid rgba(0,183,255,.3);border-radius:100px;padding:5px 13px;font-size:.66rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--cyan);margin-bottom:1rem}
+.relay-desc{font-size:.92rem;color:rgba(255,255,255,.7);line-height:1.65;margin-bottom:1.4rem}
+.relay-features{display:flex;flex-wrap:wrap;gap:6px}
+.relay-pill{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:100px;padding:5px 12px;font-size:.74rem;color:rgba(255,255,255,.85);font-weight:400}
+.relay-pricing{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+.relay-price-box{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:11px;padding:18px 20px}
+.relay-price-box.highlight{background:rgba(0,183,255,.1);border-color:rgba(0,183,255,.3)}
+.rpb-label{font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.55);font-weight:500;margin-bottom:6px}
+.rpb-amount{font-size:1.4rem;font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1.1}
+.rpb-amount .currency{color:rgba(255,255,255,.6);font-size:.95rem;font-weight:400;margin-right:3px}
+.rpb-sub{font-size:.72rem;color:rgba(255,255,255,.5);margin-top:3px}
+
+/* CALLOUT BOX */
+#callouts{padding:0 5vw 90px;background:#fff}
+.callout-grid{max-width:var(--container);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+.callout{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:28px 28px;display:flex;gap:18px;align-items:flex-start}
+.callout-icon{width:46px;height:46px;background:var(--cyan-10);border:1px solid var(--border-cyan);border-radius:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.callout-icon svg{width:20px;height:20px;stroke:var(--cyan);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.callout h4{font-size:.98rem;font-weight:700;color:var(--text);margin-bottom:.5rem}
+.callout p{font-size:.86rem;color:var(--text-3);line-height:1.65}
+
+/* FAQ */
+#faq{padding:90px 5vw;background:var(--bg2)}
+.faq-list{margin-top:2.8rem;display:flex;flex-direction:column;gap:.8rem;max-width:820px;margin-left:auto;margin-right:auto}
+.faq-item{background:#fff;border:1px solid var(--border);border-radius:13px;overflow:hidden;transition:border-color .25s}
+.faq-item:hover{border-color:var(--border-cyan)}
+.faq-q{padding:20px 24px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;font-size:.96rem;font-weight:600;color:var(--text)}
+.faq-q::after{content:'+';font-size:1.4rem;color:var(--cyan);font-weight:300;transition:transform .25s;flex-shrink:0}
+.faq-item.open .faq-q::after{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease;padding:0 24px;color:var(--text-3);font-size:.88rem;line-height:1.7}
+.faq-item.open .faq-a{max-height:300px;padding:0 24px 20px}
+
+/* FINAL CTA on pricing */
+#pricing-cta{padding:100px 5vw;background:var(--navy);color:#fff;text-align:center;position:relative;overflow:hidden}
+.pcta-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 50%,rgba(0,183,255,.06),transparent 70%);pointer-events:none}
+#pricing-cta .inner{position:relative}
+#pricing-cta h2{color:#fff;margin-bottom:1rem}
+#pricing-cta .lead{color:rgba(255,255,255,.65)}
+.pcta-buttons{display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap;margin-top:2.2rem}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .plans-grid{grid-template-columns:1fr;gap:1rem}
+  .plan-card.featured{transform:none}
+  .plan-card.featured:hover{transform:translateY(-4px)}
+  .hw-grid{grid-template-columns:1fr}
+  .relay-card{grid-template-columns:1fr;gap:1.6rem;padding:28px}
+  .callout-grid{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  #plans,#install-rates,#hardware,#callouts,#faq,#pricing-cta{padding-left:4vw;padding-right:4vw;padding-top:64px;padding-bottom:64px}
+  .rate-table th,.rate-table td{padding:14px 12px;font-size:.78rem}
+  .rate-table th{font-size:.62rem}
+  .relay-pricing{grid-template-columns:1fr}
+  .hw-specs{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="nav-drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
+
+<nav class="nav-drawer" id="navDrawer" aria-label="Mobile navigation" aria-hidden="true">
+  <div class="nd-label">Navigation</div>
+  <a href="index.html"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>Home</a>
+  <a href="services.html"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>Services</a>
+  <a href="gps-tracking.html"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>GPS Tracking</a>
+  <a href="pricing.html"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9 9a3 3 0 016 0M9 14h6M9 18h6"/></svg>Pricing</a>
+  <a href="about.html"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>About Us</a>
+  <a href="contact.html"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>Contact</a>
+  <a href="contact.html" class="nd-cta" onclick="closeDrawer()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+    Request Quote
+  </a>
+</nav>
+
+<nav class="topnav" aria-label="Main navigation">
+  <a href="index.html" class="logo">
+    <div class="logo-mark">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#0B1F3A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    </div>
+    <span class="logo-text">Precision Tech Solutions</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="services.html">Services</a>
+    <a href="gps-tracking.html">GPS Tracking</a>
+    <a href="pricing.html" class="active">Pricing</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="nav-right">
+    <a href="contact.html" class="nav-book">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:13px;height:13px"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Request Quote
+    </a>
+    <button class="burger" id="burgerBtn" onclick="toggleDrawer()" aria-label="Open menu" aria-expanded="false" aria-controls="navDrawer">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<section class="page-header">
+  <div class="page-header-bg"></div>
+  <div class="page-header-grid"></div>
+  <div class="page-header-inner">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+      <span>Pricing</span>
+    </div>
+    <div class="tag">Plans &amp; Pricing</div>
+    <h1>
+      <span class="h1-grey">Transparent pricing.</span><br>
+      <span class="h1-cyan">No surprises.</span>
+    </h1>
+    <p class="lead">Three GPS tracking plans for every fleet size, plus straightforward installation rates and hardware pricing. Every price below is in XCG, all-inclusive of OB.</p>
+    <div class="currency-note">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      Prices in XCG · OB included · One-time install costs may vary by vehicle
+    </div>
+  </div>
+</section>
+
+<!-- SUBSCRIPTION PLANS -->
+<section id="plans">
+  <div class="inner">
+    <div style="max-width:580px">
+      <div class="tag fade-up">Monthly subscriptions</div>
+      <h2 class="fade-up d1">Choose the plan that fits your fleet.</h2>
+      <p class="lead fade-up d2" style="margin-top:1rem">Per-vehicle monthly pricing. Cancel anytime. Volume discounts auto-apply for fleets of six or more.</p>
+    </div>
+    <div class="plans-grid">
+      <!-- BASIC -->
+      <div class="plan-card fade-up d1">
+        <div class="plan-name">Basic</div>
+        <div class="plan-title">Single Vehicle</div>
+        <div class="plan-desc">Perfect for individuals or small businesses with 1–5 vehicles.</div>
+        <div class="plan-price">
+          <span class="currency">ƒ</span>
+          <span class="amount">30</span>
+          <span class="period">/ month</span>
+        </div>
+        <div class="plan-sub">Per vehicle · billed monthly</div>
+        <ul class="plan-features">
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Live GPS tracking (real-time)</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Route history (30 days)</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Mobile app (iOS &amp; Android)</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Desktop web dashboard</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Mileage tracking</li>
+          <li class="muted"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Geofencing alerts</li>
+          <li class="muted"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Driver behavior reports</li>
+        </ul>
+        <a href="contact.html" class="plan-cta">
+          Get Started
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" style="width:13px;height:13px"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+
+      <!-- PROFESSIONAL -->
+      <div class="plan-card featured fade-up d2">
+        <div class="plan-badge">Most Popular</div>
+        <div class="plan-name">Professional</div>
+        <div class="plan-title">Growing Business</div>
+        <div class="plan-desc">For businesses with 6–10 vehicles needing deeper insights.</div>
+        <div class="plan-price">
+          <span class="currency">ƒ</span>
+          <span class="amount">25</span>
+          <span class="period">/ month</span>
+        </div>
+        <div class="plan-sub">Per vehicle · 6–10 vehicles</div>
+        <ul class="plan-features">
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Everything in Basic</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>G-force monitoring</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Driver behavior reports</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Geofencing &amp; alerts</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Route history (90 days)</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Speed &amp; idle alerts</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Immobilizer / startblockade</li>
+        </ul>
+        <a href="contact.html" class="plan-cta">
+          Get Started
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" style="width:13px;height:13px"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+
+      <!-- FLEET -->
+      <div class="plan-card fade-up d3">
+        <div class="plan-name">Fleet</div>
+        <div class="plan-title">Enterprise Fleet</div>
+        <div class="plan-desc">Volume pricing for transport, lease and construction operators.</div>
+        <div class="plan-price">
+          <span class="currency">ƒ</span>
+          <span class="amount">22</span>
+          <span class="period">/ month</span>
+        </div>
+        <div class="plan-sub">Per vehicle · 11–20 vehicles</div>
+        <ul class="plan-features">
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Everything in Professional</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>CAN-bus data integration</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Fuel monitoring</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Maintenance scheduling</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Custom reporting</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>API access</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Priority support</li>
+        </ul>
+        <a href="contact.html" class="plan-cta">
+          Contact Sales
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" style="width:13px;height:13px"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </div>
+    <p style="text-align:center;font-size:.82rem;color:var(--text-3);margin-top:2.5rem">20+ vehicles? <a href="contact.html" style="color:var(--cyan);font-weight:600">Contact us for custom enterprise pricing</a></p>
+  </div>
+</section>
+
+<!-- INSTALLATION RATES -->
+<section id="install-rates">
+  <div class="inner">
+    <div style="max-width:580px">
+      <div class="tag fade-up">Installation rates</div>
+      <h2 class="fade-up d1">One-time installation costs.</h2>
+      <p class="lead fade-up d2" style="margin-top:1rem">Pricing per vehicle. Fleet discounts auto-apply on bookings of seven or more vehicles. All prices in XCG.</p>
+    </div>
+    <div class="rate-table-wrap fade-up d2">
+      <table class="rate-table">
+        <thead>
+          <tr>
+            <th>Installation Service</th>
+            <th>1–6 vehicles</th>
+            <th>7–15 vehicles</th>
+            <th>Lead time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="rate-name"><strong>Standard GPS install</strong><small>Hardwired tracker, hidden install</small></div></td>
+            <td class="price">ƒ 170</td>
+            <td class="price">ƒ 130</td>
+            <td>Within 1 week</td>
+          </tr>
+          <tr>
+            <td><div class="rate-name"><strong>GPS + immobilizer</strong><small>Startblockade for anti-theft</small></div></td>
+            <td class="price">ƒ 250</td>
+            <td class="price">ƒ 200</td>
+            <td>Within 1 week</td>
+          </tr>
+          <tr>
+            <td><div class="rate-name"><strong>GPS + accessories</strong><small>Buttons, switches, panic alerts</small></div></td>
+            <td class="price">ƒ 250</td>
+            <td class="price">ƒ 200</td>
+            <td>Within 1 week</td>
+          </tr>
+          <tr>
+            <td><div class="rate-name"><strong>Dashcam (front only)</strong><small>Hardwired, neatly routed</small></div></td>
+            <td class="price">ƒ 250</td>
+            <td class="price">ƒ 200</td>
+            <td>Within 1 week</td>
+          </tr>
+          <tr>
+            <td><div class="rate-name"><strong>Dashcam (front + rear)</strong><small>Dual-channel setup</small></div></td>
+            <td class="price">ƒ 350</td>
+            <td class="price">ƒ 300</td>
+            <td>Within 1 week</td>
+          </tr>
+          <tr>
+            <td><div class="rate-name"><strong>OBD Dummy / Decoy install</strong><small>Anti-tamper decoy device</small></div></td>
+            <td class="price">ƒ 170</td>
+            <td class="price">On request</td>
+            <td>Within 1 week</td>
+          </tr>
+          <tr style="background:rgba(243,156,18,.04)">
+            <td><div class="rate-name"><strong>Urgent install</strong><small>Ready within 24 hours</small></div></td>
+            <td class="price urgent">+ ƒ 250</td>
+            <td class="price urgent">On request</td>
+            <td>Within 24h</td>
+          </tr>
+          <tr style="background:rgba(243,156,18,.04)">
+            <td><div class="rate-name"><strong>Super-urgent install</strong><small>Ready within 6 hours</small></div></td>
+            <td class="price urgent">+ ƒ 400</td>
+            <td class="price urgent">On request</td>
+            <td>Within 6h</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- HARDWARE / TRACKERS -->
+<section id="hardware">
+  <div class="inner">
+    <div style="max-width:600px">
+      <div class="tag fade-up">Hardware pricing</div>
+      <h2 class="fade-up d1">Trackers, dashcams &amp; accessories.</h2>
+      <p class="lead fade-up d2" style="margin-top:1rem">Buy hardware separately or get it bundled with installation. Hardware prices are per unit, in XCG.</p>
+    </div>
+
+    <div class="hw-grid">
+      <!-- RELAY 4G — featured, spans both columns -->
+      <div class="relay-card fade-up d1">
+        <div class="relay-info">
+          <div class="relay-tag">
+            <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            Featured · Best-seller
+          </div>
+          <h3>Relay 4G Tracker — with Immobilizer</h3>
+          <p class="relay-desc">Versatile 4G relay-form tracker with built-in immobilizer for anti-theft protection. Switch quickly between vehicles. Controllable via app or desktop.</p>
+          <div class="relay-features">
+            <span class="relay-pill">Real-time tracking</span>
+            <span class="relay-pill">Geofencing</span>
+            <span class="relay-pill">Speed monitoring</span>
+            <span class="relay-pill">Startblockade</span>
+            <span class="relay-pill">Mileage log</span>
+            <span class="relay-pill">App + desktop</span>
+          </div>
+        </div>
+        <div class="relay-pricing">
+          <div class="relay-price-box highlight">
+            <div class="rpb-label">Hardware + install</div>
+            <div class="rpb-amount"><span class="currency">ƒ</span>225</div>
+            <div class="rpb-sub">One-time payment</div>
+          </div>
+          <div class="relay-price-box">
+            <div class="rpb-label">1–5 vehicles</div>
+            <div class="rpb-amount"><span class="currency">ƒ</span>30<span style="font-size:.8rem;font-weight:400;color:rgba(255,255,255,.5)">/mo</span></div>
+            <div class="rpb-sub">Per vehicle subscription</div>
+          </div>
+          <div class="relay-price-box">
+            <div class="rpb-label">6–10 vehicles</div>
+            <div class="rpb-amount"><span class="currency">ƒ</span>25<span style="font-size:.8rem;font-weight:400;color:rgba(255,255,255,.5)">/mo</span></div>
+            <div class="rpb-sub">Per vehicle subscription</div>
+          </div>
+          <div class="relay-price-box">
+            <div class="rpb-label">11–20 vehicles</div>
+            <div class="rpb-amount"><span class="currency">ƒ</span>22<span style="font-size:.8rem;font-weight:400;color:rgba(255,255,255,.5)">/mo</span></div>
+            <div class="rpb-sub">Per vehicle subscription</div>
+          </div>
+          <div class="relay-price-box" style="grid-column:span 2;background:rgba(243,156,18,.08);border-color:rgba(243,156,18,.3)">
+            <div class="rpb-label" style="color:var(--amber)">Urgent service</div>
+            <div class="rpb-amount" style="color:var(--amber);font-size:1.2rem">ƒ 75 <span style="font-size:.78rem;font-weight:400;color:rgba(255,255,255,.55)">add-on for spoed-service</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4G GPS Wired Tracker -->
+      <div class="hw-card fade-up d2">
+        <div class="hw-head">
+          <h3>4G GPS Wired Tracker</h3>
+          <span class="hw-card-tag">G-force monitoring</span>
+        </div>
+        <p class="hw-desc">Hardwired 4G tracker with built-in G-force sensor for driver behavior monitoring. Hidden install behind the dashboard.</p>
+        <hr class="hw-divider">
+        <div class="hw-specs">
+          <div class="hw-spec-block">
+            <div class="hw-spec-label">Hardware only</div>
+            <div class="hw-spec"><span class="currency">ƒ</span>220</div>
+          </div>
+          <div class="hw-spec-block">
+            <div class="hw-spec-label">With install (1–6)</div>
+            <div class="hw-spec"><span class="currency">ƒ</span>390</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4G GPS Wired + Immobilizer -->
+      <div class="hw-card fade-up d3">
+        <div class="hw-head">
+          <h3>4G Wired + Immobilizer Kit</h3>
+          <span class="hw-card-tag">Startblockade</span>
+        </div>
+        <p class="hw-desc">Hardwired 4G tracker bundled with an immobilizer kit. Remote engine cut-off via app — total anti-theft control.</p>
+        <hr class="hw-divider">
+        <div class="hw-specs">
+          <div class="hw-spec-block">
+            <div class="hw-spec-label">Hardware only</div>
+            <div class="hw-spec"><span class="currency">ƒ</span>250</div>
+          </div>
+          <div class="hw-spec-block">
+            <div class="hw-spec-label">With install (1–6)</div>
+            <div class="hw-spec"><span class="currency">ƒ</span>500</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stealth Tracker -->
+      <div class="hw-card featured fade-up d2">
+        <div class="hw-head">
+          <h3>4G Stealth Tracker</h3>
+          <span class="hw-card-tag">Undetectable · 5yr battery</span>
+        </div>
+        <p class="hw-desc">100% undetectable backup tracker with 5-year battery life. Best paired with a wired tracker — if your vehicle is stolen, the stealth unit pinpoints it within 24 hours.</p>
+        <hr class="hw-divider">
+        <div class="hw-specs">
+          <div class="hw-spec-block">
+            <div class="hw-spec-label">Hardware only</div>
+            <div class="hw-spec"><span class="currency">ƒ</span>300</div>
+          </div>
+          <div class="hw-spec-block">
+            <div class="hw-spec-label">With install (1–6)</div>
+            <div class="hw-spec"><span class="currency">ƒ</span>400</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dashcam 2K front -->
+      <div class="hw-card fade-up d3">
+        <div class="hw-head">
+          <h3>IRoad FX2 PRO 2K</h3>
+          <span class="hw-card-tag">Front only</span>
+        </div>
+        <p class="hw-desc">High-quality 2K front dashcam with sharp night vision and impact-triggered recording.</p>
+        <hr class="hw-divider">
+        <div class="hw-specs">
+          <div class="hw-spec-block">
+            <div class="hw-spec-label">Hardware only</div>
+            <div class="hw-spec"><span class="currency">ƒ</span>600</div>
+          </div>
+          <div class="hw-spec-block">
+            <div class="hw-spec-label">With install (1–6)</div>
+            <div class="hw-spec"><span class="currency">ƒ</span>1,200</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dashcam 2K front+rear -->
+      <div class="hw-card fade-up d2">
+        <div class="hw-head">
+          <h3>IRoad FX2 PRO 2K</h3>
+          <span class="hw-card-tag">Front + rear</span>
+        </div>
+        <p class="hw-desc">Dual-channel 2K dashcam package with both front and rear coverage for complete protection.</p>
+        <hr class="hw-divider">
+        <div class="hw-specs">
+          <div class="hw-spec-block">
+            <div class="hw-spec-label">Hardware only</div>
+            <div class="hw-spec"><span class="currency">ƒ</span>800</div>
+          </div>
+          <div class="hw-spec-block">
+            <div class="hw-spec-label">With install (1–6)</div>
+            <div class="hw-spec"><span class="currency">ƒ</span>1,400</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dashcam 4K -->
+      <div class="hw-card fade-up d3">
+        <div class="hw-head">
+          <h3>IRoad FX10 PRO 4K</h3>
+          <span class="hw-card-tag">Premium · Front + rear</span>
+        </div>
+        <p class="hw-desc">Top-tier 4K dual-channel dashcam with the sharpest footage available. Ideal for high-value vehicles.</p>
+        <hr class="hw-divider">
+        <div class="hw-specs">
+          <div class="hw-spec-block">
+            <div class="hw-spec-label">Hardware only</div>
+            <div class="hw-spec"><span class="currency">ƒ</span>1,200</div>
+          </div>
+          <div class="hw-spec-block">
+            <div class="hw-spec-label">With install (1–6)</div>
+            <div class="hw-spec"><span class="currency">ƒ</span>1,800</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CALLOUTS -->
+<section id="callouts">
+  <div class="callout-grid">
+    <div class="callout fade-up d1">
+      <div class="callout-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div>
+        <h4>2-year warranty included</h4>
+        <p>Every installed system is covered by a 2-year warranty on workmanship. If something goes wrong, we fix it.</p>
+      </div>
+    </div>
+    <div class="callout fade-up d2">
+      <div class="callout-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+      <div>
+        <h4>One-time costs may vary</h4>
+        <p>Pago di 1 biaha por varia — installation costs can shift slightly depending on the vehicle&#39;s wiring and access. We always quote upfront.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="inner">
+    <div style="text-align:center;max-width:560px;margin:0 auto">
+      <div class="tag center fade-up">Frequently asked</div>
+      <h2 class="fade-up d1">Pricing questions, answered.</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item fade-up d1" onclick="this.classList.toggle('open')">
+        <div class="faq-q">Are prices really all-inclusive?</div>
+        <div class="faq-a">Yes. Every price shown includes OB (sales tax) and standard installation labor. The only variables are travel for very remote locations and urgent-service surcharges, both of which are quoted clearly before booking.</div>
+      </div>
+      <div class="faq-item fade-up d1" onclick="this.classList.toggle('open')">
+        <div class="faq-q">Do I have to use your GPS provider?</div>
+        <div class="faq-a">No — and that&#39;s the point. We partner with multiple GPS providers but never lock you in. If you already have a tracking provider, we&#39;ll install their hardware. If you don&#39;t, we&#39;ll recommend one that fits your operation and budget.</div>
+      </div>
+      <div class="faq-item fade-up d1" onclick="this.classList.toggle('open')">
+        <div class="faq-q">Can I cancel my subscription?</div>
+        <div class="faq-a">Yes. Monthly plans are cancel-anytime. Hardware you&#39;ve purchased is yours to keep, though it may require a new SIM/data plan to continue using it elsewhere.</div>
+      </div>
+      <div class="faq-item fade-up d1" onclick="this.classList.toggle('open')">
+        <div class="faq-q">How does fleet pricing work?</div>
+        <div class="faq-a">Subscription rates auto-tier based on active vehicles (1–5: ƒ 30, 6–10: ƒ 25, 11–20: ƒ 22 per vehicle/month). Install rates drop on bookings of seven or more vehicles. For fleets over 20, we offer custom enterprise pricing — contact us directly.</div>
+      </div>
+      <div class="faq-item fade-up d1" onclick="this.classList.toggle('open')">
+        <div class="faq-q">What does the 2-year warranty cover?</div>
+        <div class="faq-a">Workmanship of the installation — any wiring, mounting or integration issue traceable to our work is fixed at no charge. Hardware warranties are provided by the GPS or dashcam manufacturer separately.</div>
+      </div>
+      <div class="faq-item fade-up d1" onclick="this.classList.toggle('open')">
+        <div class="faq-q">Do you charge travel fees?</div>
+        <div class="faq-a">Standard service within Curaçao and Netherlands urban areas has no travel surcharge. For remote locations beyond our standard service area, travel fees may apply and are always quoted upfront before booking.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section id="pricing-cta">
+  <div class="pcta-bg"></div>
+  <div class="inner sec-narrow">
+    <div class="tag center fade-up" style="color:var(--cyan)">Ready to install?</div>
+    <h2 class="fade-up d1">Get a custom quote in 24 hours.</h2>
+    <p class="lead center fade-up d2" style="margin-top:1rem;color:rgba(255,255,255,.65)">Tell us about your vehicles and we&#39;ll send a tailored quote — installation, hardware, subscription, all included.</p>
+    <div class="pcta-buttons fade-up d3">
+      <a href="contact.html" class="btn-primary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Request Quote
+      </a>
+      <a href="https://wa.me/59996655017" class="btn-wa">
+        <svg viewBox="0 0 24 24" fill="#2ECC71"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.978-1.304A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.522 2 11.999 2z"/></svg>
+        WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">
+          <div class="logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#0B1F3A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <span class="logo-text">Precision Tech Solutions</span>
+        </a>
+        <p>Your professional installation partner for GPS, dashcams, infotainment, lighting and sound systems.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h5>Services</h5>
+          <a href="gps-tracking.html">GPS Tracking</a>
+          <a href="services.html#dashcam">Dashcam Installation</a>
+          <a href="services.html#carplay">CarPlay &amp; Android Auto</a>
+          <a href="services.html#sound">Sound Systems</a>
+          <a href="services.html#lighting">Lighting &amp; LED</a>
+          <a href="gps-tracking.html#canbus">CAN-bus Connection</a>
+        </div>
+        <div class="footer-col">
+          <h5>Company</h5>
+          <a href="about.html">About Us</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="contact.html">Contact</a>
+          <a href="contact.html">Request Quote</a>
+        </div>
+        <div class="footer-col">
+          <h5>Reach us</h5>
+          <a href="https://wa.me/59996655017">WhatsApp</a>
+          <a href="mailto:info@precisiontsolutions.com">Email</a>
+          <a href="about.html">Locations</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Precision Tech Solutions. All rights reserved.</p>
+      <div class="status-badge"><span class="status-dot"></span>Available for appointments</div>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
